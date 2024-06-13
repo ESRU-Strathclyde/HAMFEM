@@ -17,6 +17,8 @@ This location is hardcoded on Hamfem.f90. The lenght of the path is also hardcod
 Create a symbolic link to the executable in a folder already on the PATH:
 	cd /usr/local/bin; sudo rm hamfem; sudo ln -s /opt/hamfem/Release/hamfem hamfem
 
+ A pre-compied executable for Ubuntu 20.04 is available on the Release folder of the source code.
+
 ## Execute
 To run sample cases, copy the folder tester/to_run to the home folder.
 Execute the command in the folder where the simulation configuration is located (extension .ham)
