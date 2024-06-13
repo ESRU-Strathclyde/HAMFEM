@@ -79,7 +79,7 @@
 !	bndout:		OUTput of flows per BouNDary, indicates in which column the boundary flow 
 !					for the boundary condition index have to be printed
 !	cliunit		unit of the climate file: s(econds),h(ours), d(ays), m(onths) and y(ears) (usually 'y')
-!	cliquant	amount of data per unit in the climate file ‘01’, ‘05’, ’10’, ‘20’ and ‘30’. (usually '01')
+!	cliquant	amount of data per unit in the climate file â€˜01â€™, â€˜05â€™, â€™10â€™, â€˜20â€™ and â€˜30â€™. (usually '01')
 !	coord:		COORDinates for the node index [m]: x(1), y(2), z(3)
 !	cumdra:		time-cumulated value of 'noddra' for output
 !	cumsup:		time-cumulated value of 'elesup' for output
@@ -123,7 +123,7 @@
 !	ret:		surface saturated(T) or not(F) per node index
 !	retval:		RETained surface moisture per node index [kg]
 !	temp0:		temperatures at ttot [K]
-!	thet0:		moisture contents [kg/m³]
+!	thet0:		moisture contents [kg/mÂ³]
 !	tmax:		end time of calculation [s]
 !	tpm:		quantities to calculate: Temp, Pres, Mois (1 for yes, 0 for no)
 !	ttot:		TOTal Time [s]
@@ -164,8 +164,7 @@
 		CALL INPUT (ttot,tmax,dt,dtold,period,bdstep,dtavg,tpm,dim,nem,nnm,orie,bdnr,&
 			&nogpel,lin,atmos,satur,xts,xtslenght,graph,facloc,inputfile, currentpath,&
 			&currentpathlength,inputfilenpath,inputfilelenght,cliquant,cliunit)
-		WRITE(*,*)"1235"
-
+		
 		ALLOCATE (coord(nnm,dim),nod(nem,nogpel(2)),nodinv(nnm),mater(nem),bdcoor(bdnr,&
 			&2*dim+1),temp0(nnm),pres0(nnm),mois0(nnm),thet0(nnm),valold(nnm,6),ret(nnm),&
 			&retval(nnm),noddra(nnm,3),nodsup(nnm,3),eledra(nem,nogpel(2),3),elesup(nem,&
@@ -178,7 +177,6 @@
 			&maxval(bdcoor(:,2*dim+1)))))
  		CALL PREPROS2 (dim,nogpel,lin,nem,nnm,nod,coord,mater,bdnr,bdcoor,bdele,bdnod,&
 			&matout,bndout)
-		WRITE(*,*)"test1"
 		CALL GAUSS (nogpel,lin,dim,wgp,Ni,dNi,Nimidq)
 		CALL THEDYN_INITIALISE(orie)
 		CALL MATLIB_INITIALISE(installpath//'databases/',xts,xtslenght)
@@ -193,7 +191,6 @@
 		else
 			perc=5 !percentage of time to report progress in text mode
 		endif
-		WRITE(*,*)"4"
 !
 ! MAIN PROGRAM		
 		itime=0 ! number of the time step
