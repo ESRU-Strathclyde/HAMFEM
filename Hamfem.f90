@@ -78,7 +78,7 @@
 !	bdstep:		STEP interval for atmospheric climate BounDary value transition [s]
 !	bndout:		OUTput of flows per BouNDary, indicates in which column the boundary flow 
 !					for the boundary condition index have to be printed
-!	cliunit		unit of the climate file: s(econds),h(ours), d(ays), m(onths) and y(ears) (usually 'y')
+!	cliunit		unit of the climate file: s(econds),h(ours), d(ays), m(onths) and y(ears) (usually 'h')
 !	cliquant	amount of data per unit in the climate file ‘01’, ‘05’, ’10’, ‘20’ and ‘30’. (usually '01')
 !	coord:		COORDinates for the node index [m]: x(1), y(2), z(3)
 !	cumdra:		time-cumulated value of 'noddra' for output
