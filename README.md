@@ -8,8 +8,7 @@ https://appdocs.esru.strath.ac.uk/
 Install dependencies:
 	sudo apt-get install libblas-dev liblapack-dev
 
-Use make to compile the application. Inside the folder with the file "Makefile":
-	make
+Use make to compile the application.
 
 After compilation, move all files and subfolders to folder /opt/hamfem/
 This location is hardcoded on Hamfem.f90. The lenght of the path is also hardcoded (character(12)::installpath).
