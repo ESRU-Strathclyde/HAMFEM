@@ -1,0 +1,5 @@
+Developers in chronological order of contributions to the code:
+Hans Jansen 
+Staf Roels
+Wolfgang Zillig
+Daniel Cóstola

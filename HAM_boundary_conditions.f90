@@ -1,7 +1,20 @@
+
+! This file is part of HAMFEM.
+! HAMFEM is free software. You can redistribute it and/or modify it under the terms of the 
+! GNU General Public License as published by the Free Software Foundation version 3 or later.
+
+! HAMFEM is distributed in the hope that it will be useful but WITHOUT ANY WARRANTY; without
+! even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+! See the GNU General Public License for more details.
+
+! Copyright Hans Janssen, Katholic University Leuven, and 
+! the Energy Systems Research Unit - University of Strathclyde.!   
+!
+!
 !****************************************************************************************
 !****************************************************************************************
 !
-							MODULE HAM_boundary_conditions            ! updated: mar 2005
+							MODULE HAM_boundary_conditions            
 !
 !****************************************************************************************
 !****************************************************************************************
@@ -371,12 +384,7 @@ CONTAINS
 							Bxx=Hsurm*(RHi-thedyn_phi(t,m)*thedyn_psat(t))
 					dBxxdx=-Hsurm*thedyn_psat(t)*thedyn_phi(t,m)/(rho_l*R_v*t)
 					end select quantity8
-
-
-		
-		
-		
-		
+	
 				
 		! HAMSTAD exercise 4
 			! case(5)	 ! outside
@@ -482,8 +490,6 @@ CONTAINS
                       		&*cap_v-thedyn_phi(t,m)*&
 		     		 &(thedyn_dpsatdt(t)-m/(rho_l*R_v*t*t)*thedyn_psat(t))*(L_v+cap_v*t))
 
-
-
 !      write(35,'(E17.10,A,E10.3,A,E10.3,A,E10.3,A,E10.3)')&
 !      &ttot,'  ',Bxx2,' ',dBxxdx2,' ',Bxx3,' ',dBxxdx3
 
@@ -523,18 +529,12 @@ CONTAINS
 !         &ttot,'  ',Bxx,' ',Bxx1
 !        write(*,'(A)')"done"
 !            Bxx1=0
-
-!    Bxx1=size(catch,3)
-
-
+!            Bxx1=size(catch,3)
 					dBxxdx=extesprc(3)*thedyn_psat(t)*thedyn_phi(t,m)/(rho_l*R_v*t)
-
 !      write(*,'(E17.10,A,E10.3,A,E10.3)')&
 !      &ttot,'  ',Bxx,' ',Bxx1
 !      write(36,'(E17.10,A,E10.3,A,E10.3)')&
 !      &ttot,'  ',Bxx,' ',Bxx1
-
-
 
 !					Bxx=bndcon_evap_m(t,m,Wsp,Wdi,RHe,Tae,orie,Hsurm)+&
 !						&bndcon_rain_m(Rav,Wsp,Wdi,orie,c)  ! evaporation+rain
@@ -571,9 +571,7 @@ CONTAINS
 !      &ttot,'  ',Bxx1,' ',dBxxdx1,' ',Bxx,' ',dBxxdx
 !				Bxx=Bxx1
 !             			dBxxdx=dBxxdx1
-
 !      			else
-
 !				Bxx1=0
 !             			dBxxdx1=0
 !      write(36,'(E17.10,A,E10.3,A,E10.3,A,E10.3,A,E10.3)')&
@@ -581,9 +579,7 @@ CONTAINS
 
    			endif
 
-
 					endif	!end latent heat	
-
 
 					case(010)
 					bdkind=0 
@@ -694,13 +690,9 @@ CONTAINS
 		horiz=Ra; Vloc=Ws*dcos(Wd-ori(1))
 !        write(*,'(E17.10,A,E17.3)')Ra,'  ',Vloc
 
-
 !			allocate(catc(size(catch,3),size(catch,4)),catc5(size(catch,3),size(catch,4)),&
 !				&catc6(size(catch,3),size(catch,4)))
-
 !                        catc=0.0d0;catc5=0.0d0;catc6=0.0d0;
-
-
 
 		if (Ra*Vloc.GT.0.0d0) then
 			place=locat ! location on facade
@@ -724,8 +716,6 @@ CONTAINS
 
 !        write(*,'(I5,A,I5)')&
 !         &size(catch,3),'  ',size(catch,4)
-
-
 
 			catc5=catch(i,j,:,:)+(catch(i,j+1,:,:)-catch(i,j,:,:))*(place(2)-&
 				&catch(1,j,1,1))/(catch(1,j+1,1,1)-catch(1,j,1,1))
@@ -1041,19 +1031,13 @@ CONTAINS
       write (*,*) " "
       write (*,*) "Socket opened. Socket id."
       write (*,*) hsocket(8)
-
-
-
 !
 	end subroutine EXTCOUPLING_INITIALISE
-!      
 !	
 !       ________________________________________________________________________________
 ! 
         SUBROUTINE  EXTCOUPLING_SENDnRECEIVE(temp0,pres0,mois0,nnm)
 !      
-!	
-!
 !       Common block to hold socket IDs
         integer hsocket(8),hamj
         common/skt/hsocket

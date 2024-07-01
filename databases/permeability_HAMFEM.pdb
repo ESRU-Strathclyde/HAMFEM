@@ -86,40 +86,7 @@
 0	material 15 (perlite insulation)
 0	material 16 (aerated cellular concrete)
 0	material 17	(flax insulation)
-0	material 18	
-0	material 19
-0	material 20
-0	material 21
-0	material 22
-0	material 23
-0	material 24
-0	material 25
-0	material 26
-0	material 27
-0	material 28
-0	material 29
-0	material 30
-0	material 31
-0	material 32
-0	material 33
-0	material 34
-0	material 35
-0	material 36
-0	material 37
-0	material 38
-0	material 39
-0	material 40
-0	material 41
-0	material 42
-0	material 43
-0	material 44
-0	material 45
-0	material 46
-0	material 47
-0	material 48
-0	material 49
-0	material 50
-200	material 51 (ceramic brick)
+200	material 18 (ceramic brick)
 1.04061	-8.89943
 1.08121	-8.89943
 1.12182	-8.89943
@@ -320,7 +287,7 @@
 9.04002	-19.50827
 9.08063	-19.84802
 9.12123	-20.21954
-200 material 52 (calcium silicate)
+200 material 19 (calcium silicate)
 1.04061	-10.46432
 1.08121	-10.46435
 1.12182	-10.46438
@@ -521,9 +488,42 @@
 9.04002	-19.18043
 9.08063	-19.51955
 9.12123	-19.89182
-0	material 53 (wood homogeneous)
-0 	material 54 (early wood)
-0 	material 55	(late wood)
+0	material 20
+0	material 21
+0	material 22
+0	material 23
+0	material 24
+0	material 25
+0	material 26
+0	material 27
+0	material 28
+0	material 29
+0	material 30
+0	material 31
+0	material 32
+0	material 33
+0	material 34
+0	material 35
+0	material 36
+0	material 37
+0	material 38
+0	material 39
+0	material 40
+0	material 41
+0	material 42
+0	material 43
+0	material 44
+0	material 45
+0	material 46
+0	material 47
+0	material 48
+0	material 49
+0	material 50
+0	material 51
+0	material 52
+0	material 53
+0 	material 54
+0 	material 55
 0	material 56
 0	material 57
 0	material 58

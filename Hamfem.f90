@@ -1,8 +1,18 @@
 !
 !		    		1D/2D/3D-FINITE ELEMENT MODEL FOR THE SIMULATION OF 
 !			    	 HEAT, AIR AND MOISTURE TRANSFER IN BUILDING PARTS
-!
-!																 written by: Hans Janssen
+
+! HAMFEM is free software. You can redistribute it and/or modify it under the terms of the 
+! GNU General Public License as published by the Free Software Foundation version 3 or later.
+
+! HAMFEM is distributed in the hope that it will be useful but WITHOUT ANY WARRANTY; without
+! even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+! See the GNU General Public License for more details.
+
+! This file is part of the HAMFEM system.
+! Copyright Hans Janssen, Katholic University Leuven, and 
+! the Energy Systems Research Unit - University of Strathclyde.
+
 !****************************************************************************************
 !****************************************************************************************
 !
@@ -10,12 +20,9 @@
 !
 !****************************************************************************************
 !****************************************************************************************
-!																		updated: mar 2005
+
 !
 !
-!		use msflib			! WINDOWS
-!		use msimsl			! WINDOWS
-!		use HAM_graphical_output	! WINDOWS
 		use HAM_material_library
 		use HAM_thermodynamics_library
 		use HAM_boundary_conditions
@@ -40,8 +47,6 @@
 		character(1) cliunit
 		character(100)::inputfile,currentpath
 		character(200)::inputfilenpath,promptoptions
-!		character(10)::installpath 		! WINDOWS size is hardcoded
-!		character(29)::installpath		! UNIX SOLARIS size is hardcoded
 		character(12)::installpath		! LINUX size is hardcoded
 		logical, allocatable::ret(:)
 		COMMON/data1/lati
@@ -54,17 +59,12 @@
       integer fnhostport
       character sfnhostport*5
 ! Servername
-!      character servername*19 /"rietveld.bwk.tue.nl"/
       character servername*21 /"bps01-net0.bwk.tue.nl"/
 ! Data to exchange      
       real extheatc,extheati,intheatc,intheati,extmoistc,extmoisti,&
 			&intmoistc,intmoisti
       COMMON/data3/extheatc,extheati,intheatc,intheati,extmoistc,extmoisti,&
 			&intmoistc,intmoisti      
-       
-
-
-      
       	
 !	atmos:		ATMOSpheric(T) or non-(F) boundary conditions to be used
 !	bdcoor:		coordinates and location of boundary conditions
@@ -138,25 +138,16 @@
 !
 ! PREPROCESSOR
 
-
-
-
-!MODE: COMMAND LINE or FROM CVF INTERFACE
 		!Get input file name from command line, current directory,define instaltion folder.
 		CALL GET_COMMAND_ARGUMENT(1,inputfile)
 		CALL GET_COMMAND_ARGUMENT(2,promptoptions)
 		CALL GET_COMMAND_ARGUMENT(3,sfnhostport)
-!               CALL GETARG(1,inputfile)		! Solaris
-!		CALL GETARG(2,promptoptions)
-!		CALL GETARG(3,sfnhostport)
 		CALL GETCWD(currentpath)
 		
 		READ(sfnhostport,'(I5)') fnhostport
 		WRITE(*,*) fnhostport
 		
 		currentpathlength=LEN_TRIM(currentpath)
-!		installpath='D:\Hamfem\'			! WINDOWS hardcoded
-!		installpath='$HOME/bwdcosto/hamfem/Hamfem/'	! UNIX SOLARIS hardcoded
 		installpath='/opt/hamfem/'	! LINUX hardcoded
 		inputfilelenght=LEN_TRIM(inputfile)-4
 
@@ -182,12 +173,10 @@
 		CALL MATLIB_INITIALISE(installpath//'databases/',xts,xtslenght)
 		CALL BNDCON_INITIALISE(installpath//'databases/',atmos,xts,xtslenght,facloc,bdstep,&
 		&cliquant, cliunit)
-!HAM to be generalized
+!External coupling with ESP-r (harcoded)
 		if (bdele(1,2).EQ.44.OR.bdele(1,2).EQ.45.OR.bdele(2,2).EQ.45) &
                   &CALL EXTCOUPLING_INITIALISE(fnhostport,servername)
 		if (graph) then
-!			CALL GRAFIC_INITIALISE()						! WINDOWS
-!			CALL INIDRAW (dim,coord,nod,nodinv,nem,nogpel,nnm,mater,temp0,thet0)	! WINDOWS
 		else
 			perc=5 !percentage of time to report progress in text mode
 		endif
@@ -198,19 +187,14 @@
 			&mois0,thet0,cumdra,cumsup,bdnn,bdnod,bdne,bdele,matout,bndout,itime)
 		DO WHILE (ttot.LT.tmax)
 			itime=itime+1
-!		WRITE(*,*)"bb"
 			CALL COFEM (ttot,dt,dtold,dtavg,period,bdstep,nogpel,nem,nnm,nhbw,dim,orie,&
 				&nod,nodinv,mater,coord,tpm,temp0,pres0,mois0,thet0,valold,ret,retval,&
 				&atmos,satur,noddra,nodsup,eledra,elesup,cumdra,cumsup,wgp,Ni,dNi,bdne,&
 				&bdele,bdnn,bdnod)
-!		WRITE(*,*)"cc"
 			CALL OUTPUT (ttot,period,nem,nogpel,wgp,Ni,dNi,coord,mater,dim,nod,temp0,&
 				&pres0,mois0,thet0,cumdra,cumsup,bdnn,bdnod,bdne,bdele,matout,bndout,&
 				&itime)
-!		WRITE(*,*)"dd"
 			if (graph) then
-!				IF (mod(itime,1).eq.0) CALL TIMEDRAW (ttot,dim,coord,nod,mater,nodinv,nem,&
-!				&nogpel,nnm,temp0,mois0,tpm,Nimidq,graph,lin)
 			else
 				IF (itime.EQ.1) write(*,*) "simulation started. elapsed time (%):"
 				IF (ttot.GT.(tmax*perc/100)) then
@@ -218,10 +202,8 @@
 						perc=perc+5
 				endif
 			endif
-!		WRITE(*,*)"aa"
 			if ((dmod(ttot,period).EQ.0.0d0)) then
-!		WRITE(*,*)"bb"
-!                if ((bdele(1,2).EQ.44).OR.(bdele(2,2).EQ.45))WRITE(*,*)"cc"
+!External coupling with ESP-r (harcoded)
 			if ((bdele(1,2).EQ.44).OR.(bdele(2,2).EQ.45)) CALL EXTCOUPLING_SENDnRECEIVE&
 				&(temp0,pres0,mois0,nnm)
 
@@ -242,5 +224,3 @@ CONTAINS
 		include	'./Mainprog.f90'
 		
 END PROGRAM HAMFEM	
-
-

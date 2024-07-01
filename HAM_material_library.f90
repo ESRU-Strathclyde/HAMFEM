@@ -1,41 +1,24 @@
-! ***************************************************************************************
-! ***************************************************************************************
-!
-								MODULE HAM_material_library			  ! updated: mar 2005
-!
-! ***************************************************************************************
-! ***************************************************************************************
-! Documentation can be found in HAM_material_library.pdf and in references at bottom.
-!
-! Materials currently available in this library
-! =============================================
-!
-! Nr    Description
-!
-! 1		concrete							(HAMSTAD benchmark 1)
-! 2		polysterene							(HAMSTAD benchmark 1)
-! 3		ceramic brick						(HAMSTAD benchmark 4)
-! 4		plaster								(HAMSTAD benchmark 4)
-! 5		outside mineral plaster, base layer (EIFS Vlietbuilding, measurements KULeuven) 
-! 6		outside mineral plaster, top layer	(EIFS Vlietbuilding, measurements KULeuven)
-! 7		calcium silicate					(data Anne-Séverine)
-! 8		cement mortar						(measurements TUDresden)
-! 9		cement mortar 2						(measurements KULeuven) (lambda missing)
-! 10	cement mortar 1						(measurements KULeuven) (lambda missing)
-! 11	wood fibre board					(data IEA Annex 24)
-! 12	plywood								(data IEA Annex 24)
-! 13	gypsum plaster						(data Goossens, 2003) (cet & lambda missing)
-! 14	cellulose insulation				(data Peukhuri, 2003)
-! 15	perlite insulation					(data Peukhuri, 2003)
-! 16	aerated cellular concrete			(data Peukhuri, 2003)
-! 17	flax insulation						(data Peukhuri, 2003)
-! 51	ceramic brick						(data Jan Carmeliet)
-! 52	calcium silicate					(data Jan Carmeliet)
-! 53	wood homogeneous, non-isotropic		(measurements KULeuven)
-! 54	early wood, non-isotropic			(measurements KULeuven)
-! 55	late wood, non-isotropic			(measurements KULeuven)
 
+! This file is part of HAMFEM.
+! HAMFEM is free software. You can redistribute it and/or modify it under the terms of the 
+! GNU General Public License as published by the Free Software Foundation version 3 or later.
 
+! HAMFEM is distributed in the hope that it will be useful but WITHOUT ANY WARRANTY; without
+! even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+! See the GNU General Public License for more details.
+
+! Copyright Hans Janssen, Katholic University Leuven, and 
+! the Energy Systems Research Unit - University of Strathclyde.
+
+! ***************************************************************************************
+! ***************************************************************************************
+!
+								MODULE HAM_material_library			  
+!
+! ***************************************************************************************
+! ***************************************************************************************
+
+!
 !
 	use HAM_thermodynamics_library
 	implicit none
@@ -91,7 +74,7 @@ CONTAINS
 		close(1001)
 
 		matdb=TRIM(xts(1))
-		open (unit=1009,file=TRIM(main_dir)//matdb//'.mdb',action='read')
+		open (unit=1009,file=TRIM(main_dir)//matdb//'.mtr',action='read')
 		read (1009,*) nmat ! read number of material in the database
 		read (1009,*);read (1009,*) ! read (skip) header line
 		do j=1,nmat ! read each line
